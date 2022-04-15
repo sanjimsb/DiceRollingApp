@@ -15,102 +15,58 @@
         android:paddingRight="16dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:padding="10dp"
-            android:layout_weight="1">
+            style="@style/innerLinearLayout">
 
             <TextView
+                style="@style/buttonStyle"
                 android:id="@+id/rolledNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rolled Number"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/textField"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="Rolled Number" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:padding="10dp"
-            android:layout_weight="1">
+            style="@style/innerLinearLayout">
 
             <EditText
+                style="@style/editTextStyling"
                 android:id="@+id/customDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="Custom Dice"
-                android:ems="6"
-                android:maxEms="6"
-                android:textAlignment="center"/>
+                />
             <Button
+                style="@style/buttonStyle"
                 android:id="@+id/addCustomDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Dice"
-                android:textAlignment="center" />
+                android:text="Add Dice" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_weight="1">
+            style="@style/innerLinearLayout">
 
             <Spinner
                 android:id="@+id/diceType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="8"
-                android:maxEms="8"
                 android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_weight="1">
+            style="@style/innerLinearLayout"
+            android:orientation="vertical">
 
             <Button
+                style="@style/buttonStyle"
                 android:id="@+id/rollDice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Roll Dice"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField" />
+                android:text="Roll Dice" />
 
             <Button
+                style="@style/buttonStyle"
                 android:id="@+id/rollTwice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Roll Dice Twice"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField" />
+                android:text="Roll Dice Twice" />
         </LinearLayout>
 
     </LinearLayout>

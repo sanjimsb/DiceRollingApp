@@ -1,11 +1,16 @@
 package com.example.dicerollingapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.DigitsKeyListener;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     Spinner getDiceType;
     Button rollDiceButton;
@@ -32,9 +37,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<String> userInputs = new ArrayList<>();
     ArrayAdapter<String> catAdapter;
     public static final String MyPREFERENCES = "UserInput";
-    public static final String PREFERENCE_KEY = "customDiceValues";
+    public static final String PREFERENCE_KEY = "userCustomDice";
     SharedPreferences sharedpreferences;
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                return true;
+            case R.id.item2:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         List<String> getStoredData = loadData();
-        
+
         // checking below if the array list is empty or not
         if (getStoredData != null) {
             userInputs = getStoredData;
@@ -135,6 +153,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
