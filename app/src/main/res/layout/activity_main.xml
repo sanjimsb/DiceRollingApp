@@ -24,10 +24,10 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/rolledNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Rolled Number"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/textField"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
             android:layout_weight="1">
 
             <EditText
-                android:id="@+id/textField"
+                android:id="@+id/customDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Custom Dice"
@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
             <Button
-                android:id="@+id/addDice"
+                android:id="@+id/addCustomDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Dice"
@@ -81,7 +81,7 @@
             <Spinner
                 android:id="@+id/diceType"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -95,10 +95,22 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/rollDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Roll Dice"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textField" />
+
+            <Button
+                android:id="@+id/rollTwice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roll Dice Twice"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
