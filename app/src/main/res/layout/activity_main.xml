@@ -49,24 +49,16 @@
                 android:id="@+id/customDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Custom Dice"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                android:hint="Custom Dice"
+                android:ems="6"
+                android:maxEms="6"
+                android:textAlignment="center"/>
             <Button
                 android:id="@+id/addCustomDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Dice"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField" />
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,6 +74,8 @@
                 android:id="@+id/diceType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ems="8"
+                android:maxEms="8"
                 android:textAlignment="center" />
         </LinearLayout>
 

@@ -2,15 +2,20 @@ package com.example.dicerollingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button rollDiceTwice;
     TextView rolledNumberInfo;
     List<String> diceTypes;
+    List<String> userInputs = new ArrayList<>();
     ArrayAdapter<String> catAdapter;
+    public static final String MyPREFERENCES = "UserInput";
+    public static final String PREFERENCE_KEY = "customDiceValues";
+    SharedPreferences sharedpreferences;
 
 
     @Override
@@ -38,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getDiceType = (Spinner) findViewById(R.id.diceType);
         customDice = (EditText) findViewById(R.id.customDice);
         rolledNumberInfo = (TextView) findViewById(R.id.rolledNumber);
+
         List<String> defaultDice = Arrays.asList("4","6","8","10","12","20");
         diceTypes = new ArrayList<String>();
 
@@ -46,6 +56,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(int i=0; i < defaultDice.size(); i++) {
             diceTypes.add(defaultDice.get(i));
         }
+
+        List<String> getStoredData = loadData();
+        
+        // checking below if the array list is empty or not
+        if (getStoredData != null) {
+            userInputs = getStoredData;
+            for (int i = 0; i < getStoredData.size(); i++) {
+                diceTypes.add(getStoredData.get(i));
+            }
+        }
+
         catAdapter.notifyDataSetChanged();
 
         rollDiceButton.setOnClickListener(this);
@@ -64,18 +85,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.addCustomDice:
                 System.out.println(customDice.getText());
-                if(!diceTypes.contains(customDice.getText().toString())) {
+                if(!diceTypes.contains(customDice.getText().toString()) && !customDice.getText().toString().isEmpty()) {
+                    userInputs.add(customDice.getText().toString());
+                    saveData();
                     diceTypes.add(customDice.getText().toString());
                     int pos = diceTypes.indexOf(customDice.getText().toString());
                     getDiceType.setSelection(pos);
                 }
-//                getCurrentDice = Integer.parseInt(getDiceType.getSelectedItem().toString());
                 break;
             case R.id.rollTwice:
                 getCurrentDice = Integer.parseInt(getDiceType.getSelectedItem().toString());
                 rolledNumberInfo.setText(String.valueOf(roll(getCurrentDice)) + ", " + String.valueOf(roll(getCurrentDice)));
                 break;
         }
+    }
+
+    private void saveData() {
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userInputs);
+        editor.putString(PREFERENCE_KEY,json);
+        editor.commit();
+    }
+
+    private List<String> loadData() {
+        // shared preferences.
+        SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        // creating a variable for gson.
+        Gson gson = new Gson();
+
+        // shared prefs if not present setting it as null.
+        String json = sharedPreferences.getString(PREFERENCE_KEY, null);
+
+        // get the type of our array list.
+        Type type = new TypeToken<List<String>>() {}.getType();
+
+        // getting data from gson and saving it to array list
+        List<String> courseModalArrayList = gson.fromJson(json, type);
+
+        return courseModalArrayList;
     }
 
     public int roll(int getDiceType){
