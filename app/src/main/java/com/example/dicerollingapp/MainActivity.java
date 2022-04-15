@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.DigitsKeyListener;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,6 +41,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String MyPREFERENCES = "UserInput";
     public static final String PREFERENCE_KEY = "userCustomDice";
     SharedPreferences sharedpreferences;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.theme_menu, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -118,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // saves dice added by the users to the shared preference.
     private void saveData() {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -146,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return courseModalArrayList;
     }
 
+    //generates the dice randomly
     public int roll(int getDiceType){
         int getRolledNumber = (int)Math.floor(Math.random() * (getDiceType) + 1);
         return getRolledNumber;
